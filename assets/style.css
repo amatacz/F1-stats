@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400&display=swap');
+
+@font-face {
+    font-family: 'Formula1';
+    src: url('fonts/Formula1-Regular.otf')
+}
+
+body {
+    font-family: 'Formula1';
+    background-color: #061E44;
+}
+
+.app_container {
+    margin: 1% 5%;
+}
+
+.app_header {
+    display: flex;
+    justify-content: space-between;
+    color: #FFFFFF;
+}
+
+.app_header_desc {
+    justify-content: space-between;
+    display: flex;
+    letter-spacing: 0.23rem;
+    color: #FFFFFF;
+}
+
+.app_header_paragraph {
+    color: #C4CDD5;
+}
+
+.app_header_logo {
+    order: 0;
+    width: 50px;
+}
+
+.app_content {
+    display: flex;
+    margin-top: 20px;
+}
+
+.graph_title {
+    color: #C4CDD5 !important;
+    letter-spacing: 0.0rem !important;
+    padding: 5px 5px 5px 5px;
+    margin-bottom: 0px !important;
+
+}
+
+.graph_container {
+    border-width: 5px;
+    border-color: #4d71ab;
+    border-style: solid;
+    border-radius: 50px;
+    margin: 15px 15px 15px 15px;
+    padding: 15px 15px 15px 25px;
+}
