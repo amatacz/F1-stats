@@ -268,9 +268,11 @@ def update_sunburst(year):
     Output("my-LED-display", "value"),
     Input("update_timer", "n_intervals"))
 def update_timer(value):
-    tz = pytz.timezone('Europe/Warsaw')
-    now = datetime.now(tz=tz)
-    gp_time = datetime(2022, 10, 23, 21, 0, 0, tzinfo=tz)
+    # local_tz = 'Europe/Warsaw'
+    # tz = pytz.timezone(local_tz)
+    # JAK USTAWIĆ TIMEZONE? W HEROKU ZCZYTUJE MI US
+    now = datetime.now()
+    gp_time = datetime(2022, 10, 23, 21, 0, 0)
     diff = gp_time-now
     days = diff.days
     hours = diff.seconds // 3600
