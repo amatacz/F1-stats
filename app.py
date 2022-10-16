@@ -1,4 +1,5 @@
 from datetime import datetime
+import pytz
 import pandas as pd
 from dash import Dash, dcc, html, Input, Output
 import dash_daq as daq
@@ -267,8 +268,9 @@ def update_sunburst(year):
     Output("my-LED-display", "value"),
     Input("update_timer", "n_intervals"))
 def update_timer(value):
-    now = datetime.now()
-    gp_time = datetime(2022, 10, 23, 21, 0, 0)
+    tz = pytz.timezone('Europe/Warsaw')
+    now = datetime.now(tz=tz)
+    gp_time = datetime(2022, 10, 23, 21, 0, 0, tzinfo=tz)
     diff = gp_time-now
     days = diff.days
     hours = diff.seconds // 3600
