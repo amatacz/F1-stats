@@ -270,9 +270,9 @@ def update_sunburst(year):
 def update_timer(value):
     # local_tz = 'Europe/Warsaw'
     # tz = pytz.timezone(local_tz)
-    # JAK USTAWIĆ TIMEZONE? W HEROKU ZCZYTUJE MI US
+    # JAK USTAWIĆ TIMEZONE? W HEROKU PODCZAS TWORZENIA APKI ZMIENILAM REGION NA EU, NIE ZGADZAJA MI SIE godziny (pokazuje +2h)
     now = datetime.now()
-    gp_time = datetime(2022, 10, 23, 21, 0, 0)
+    gp_time = datetime(2022, 10, 30, 21, 0, 0)
     diff = gp_time-now
     days = diff.days
     hours = diff.seconds // 3600

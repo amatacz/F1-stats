@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+
+
 # load datasets
 constructors = pd.read_csv('data/constructors.csv')
 drivers = pd.read_csv('data/drivers.csv')
