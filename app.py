@@ -55,6 +55,16 @@ df.constructor_name = df.constructor_name.apply(lambda x: x.title().replace("_",
 df.constructor_nationality = df.constructor_nationality.apply(lambda x: x.title().replace("_", " "))
 df.driver_nationality = df.driver_nationality.apply(lambda x: x.title().replace("_", " "))
 
+constructors_colors = {'Ferrari': '#DC0000', 'Mercedes': '#00D2BE', 'Haas F1 Team': '#FFFFFF', 'Alfa Romeo': '#900000', 'Alpine F1 Team': '#0090FF',
+ 'Alphatauri': '#2B4562', 'Aston Martin': '#006F62', 'Williams': '#005AFF', 'Mclaren': '#FF8700', 'Red Bull': '#0600EF',
+ 'Racing Point': '#F596C8', 'Renault': '#FFF500', 'Toro Rosso': '#E60F46', 'Force India': '#ff5f0f', 'Sauber': '#006eff',
+ 'Manor Marussia': '#323232', 'Lotus F1': '#86995B', 'Marussia': '#6E0000', 'Caterham': '#005030', 'Hrt': '#A6904F', 'Lotus': '#FFB800', 'Virgin': '#cc0000',
+ 'Brawn': '#B8FD6E', 'Toyota': '#cc242c', 'Bmw Sauber': '#1a32d7',  'Super Aguri': '#bb7174', 'Honda': '#49b7a9', 'Spyker': '#f29153', 'Mf1': '#a2abb2',
+ 'Spyker Mf1': '#f94f41', 'Bar': '#49b7a9', 'Jordan': '#ebc432', 'Minardi': '#feff59', 'Jaguar': '#436e5b', 'Arrows': '#febb62', 'Prost': '#04086a',
+ 'Benetton': '#00b2ec'}
+
+df['constructor_colors'] = df['constructor_name'].map(constructors_colors)
+
 # reset index
 df.reset_index(drop=True, inplace=True)
 
@@ -66,15 +76,9 @@ app = Dash(
 app.title = "F1 analyze"
 server = app.server
 
-constructor_colors = {'Ferrari': '#DC0000', 'Mercedes': '#00D2BE', 'Haas F1 Team': '#FFFFFF', 'Alfa Romeo': '#900000', 'Alpine F1 Team': '#0090FF',
- 'Alphatauri': '#2B4562', 'Aston Martin': '#006F62', 'Williams': '#005AFF', 'Mclaren': '#FF8700', 'Red Bull': '#0600EF',
- 'Racing Point': '#F596C8', 'Renault': '#FFF500', 'Toro Rosso': '#E60F46', 'Force India': '#ff5f0f', 'Sauber': '#006eff',
- 'Manor Marussia': '#323232', 'Lotus F1': '#86995B', 'Marussia': '#6E0000', 'Caterham': '#005030', 'Hrt': '#A6904F', 'Lotus': '#FFB800', 'Virgin': '#cc0000',
- 'Brawn': '#B8FD6E', 'Toyota': '#cc242c', 'Bmw Sauber': '#1a32d7',  'Super Aguri': '#bb7174', 'Honda': '#49b7a9', 'Spyker': '#f29153', 'Mf1': '#a2abb2',
- 'Spyker Mf1': '#f94f41', 'Bar': '#49b7a9', 'Jordan': '#ebc432', 'Minardi': '#feff59', 'Jaguar': '#436e5b', 'Arrows': '#febb62', 'Prost': '#04086a',
- 'Benetton': '#00b2ec'}
 
-app_color = {"graph_bg": "#061E44", "graph_line": "#007ACE", "graph_text": "#FFFFFF", "graph_colors": px.colors.qualitative.Vivid, "constructors_colors": constructor_colors}
+
+app_color = {"graph_bg": "#061E44", "graph_line": "#007ACE", "graph_text": "#FFFFFF", "graph_colors": px.colors.qualitative.Vivid, "constructors_colors": constructors_colors}
 
 
 
@@ -208,9 +212,8 @@ app.layout = html.Div(
 def update_bar_chart(year):
     data = df.loc[df['position_order'] == 1]
     mask = data["year"] == year
-    dff = data[mask]
     fig = px.bar(data[mask], x="position_order", y="constructor_name",  orientation='h', labels={'position_order': "Number of GP wins", 'constructor_name': "Constructor name"},
-                 color='constructor_name', color_discrete_sequence=app_color["graph_colors"])
+                 color='constructor_name', color_discrete_map=constructors_colors)
     fig.update_layout(
         plot_bgcolor=app_color["graph_bg"],
         paper_bgcolor=app_color["graph_bg"],
@@ -231,7 +234,7 @@ def update_line(gp):
     df_speed = df.groupby(['gp_name', 'year'])['fastest_lap_speed'].mean().to_frame().reset_index()
     mask = df_speed.gp_name.isin(gp)
     fig = px.line(df_speed[mask], x='year', y="fastest_lap_speed", labels={'year': "Year", 'fastest_lap_speed': "Fastest Lap Speed (kmh)"}, color='gp_name',
-                  color_discrete_sequence=app_color["graph_colors"])
+                  color_discrete_map=constructors_colors)
     fig.update_layout(
         plot_bgcolor=app_color["graph_bg"],
         paper_bgcolor=app_color["graph_bg"],
@@ -253,7 +256,7 @@ def update_line(gp):
     Input("constructor_wins_slider", "value"))
 def update_sunburst(year):
     mask = df['year'] == year
-    fig = px.sunburst(df[mask], path=['constructor_name', 'driver'], values="points", color_discrete_sequence=app_color["graph_colors"])
+    fig = px.sunburst(df[mask], path=['constructor_name', 'driver'], values="points", color='constructor_name', color_discrete_map=constructors_colors)
     fig.update_layout(
         plot_bgcolor=app_color["graph_bg"],
         paper_bgcolor=app_color["graph_bg"],
@@ -268,9 +271,6 @@ def update_sunburst(year):
     Output("my-LED-display", "value"),
     Input("update_timer", "n_intervals"))
 def update_timer(value):
-    # local_tz = 'Europe/Warsaw'
-    # tz = pytz.timezone(local_tz)
-    # JAK USTAWIĆ TIMEZONE? W HEROKU PODCZAS TWORZENIA APKI ZMIENILAM REGION NA EU, NIE ZGADZAJA MI SIE godziny (pokazuje +2h)
     now = datetime.now()
     gp_time = datetime(2022, 10, 30, 21, 0, 0)
     diff = gp_time-now
@@ -285,4 +285,3 @@ def update_timer(value):
 
 if __name__ == "__main__":
     app.run_server(debug=True)
-
