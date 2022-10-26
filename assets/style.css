@@ -5,59 +5,169 @@
     src: url('fonts/Formula1-Regular.otf')
 }
 
-body {
-    font-family: 'Formula1';
-    background-color: #061E44;
+@media only screen and (min-width: 992px) {
+
+    body {
+        font-family: 'Formula1';
+        background-color: #061E44;
+    }
+
+    .app_container {
+        margin: 1% 5%;
+    }
+
+    .app_header {
+        display: flex;
+        justify-content: space-between;
+        color: #FFFFFF;
+    }
+
+    .app_header_desc {
+        justify-content: space-between;
+        display: flex;
+        letter-spacing: 0.23rem;
+        color: #FFFFFF;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .app_header_paragraph {
+        color: #C4CDD5;
+    }
+
+    .app_header_logo {
+        order: 0;
+        width: 50px;
+    }
+
+    .app_content {
+        display: flex;
+        margin-top: 20px;
+    }
+
+    .graph_title {
+        color: #C4CDD5 !important;
+        letter-spacing: 0.0rem !important;
+        padding: 5px 5px 5px 5px;
+        margin-bottom: 0px !important;
+
+    }
+
+    .graph_container {
+        border-width: 5px;
+        border-color: #4d71ab;
+        border-style: solid;
+        border-radius: 50px;
+        margin: 15px 15px 15px 15px;
+        padding: 15px 15px 15px 25px;
+    }
+
+    .graph_container_top {
+        border-width: 5px;
+        border-color: #4d71ab;
+        border-style: solid;
+        border-radius: 50px;
+        margin: 15px 15px 15px 15px;
+        padding: 15px 15px 15px 25px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .graph_container_flex_top {
+        display: flex;
+        flex-direction: row;
+        align-self: inherit;
+        padding: 15px 15px 15px 25px;
+    }
+
+    #constructor_wins_bar{
+        width: 65%;
+    }
+
+    #team_sunburst_graph {
+        width: 35%;
+    }
 }
 
-.app_container {
-    margin: 1% 5%;
-}
+ @media only screen and (max-width: 600px) {
+    body {
+        font-family: 'Formula1';
+        background-color: #061E44;
+    }
 
-.app_header {
-    display: flex;
-    justify-content: space-between;
-    color: #FFFFFF;
-}
+    .app_container {
+        margin: 1% 5%;
+    }
 
-.app_header_desc {
-    justify-content: space-between;
-    display: flex;
-    letter-spacing: 0.23rem;
-    color: #FFFFFF;
-}
+    .app_header {
+        display: flex;
+        justify-content: space-between;
+        color: #FFFFFF;       
+    }
 
-.app_header_paragraph {
-    color: #C4CDD5;
-}
+    .app_header_desc {
+        justify-content: center;
+        display: flex;
+        letter-spacing: 0.23rem;
+        color: #FFFFFF;
+        flex-direction: column;
+        
+    }
 
-.app_header_logo {
-    order: 0;
-    width: 50px;
-}
+    .app_header_paragraph {
+        color: #C4CDD5;
+    }
 
-.app_content {
-    display: flex;
-    margin-top: 20px;
-}
+    .app_header_logo {
+        order: 0;
+        width: 50px;
+    }
 
-.graph_title {
-    color: #C4CDD5 !important;
-    letter-spacing: 0.0rem !important;
-    padding: 5px 5px 5px 5px;
-    margin-bottom: 0px !important;
+    .app_content {
+        display: flex;
+        margin-top: 20px;
+    }
 
-}
+    .graph_title {
+        color: #C4CDD5 !important;
+        letter-spacing: 0.0rem !important;
+        padding: 5px 5px 5px 5px;
+        margin-bottom: 0px !important;
 
-.graph_container {
-    border-width: 5px;
-    border-color: #4d71ab;
-    border-style: solid;
-    border-radius: 50px;
-    margin: 15px 15px 15px 15px;
-    padding: 15px 15px 15px 25px;
-}
+    }
 
-.graph_container_top_top {
-    display: flex;
-}
+    .graph_container {
+        border-width: 5px;
+        border-color: #4d71ab;
+        border-style: solid;
+        border-radius: 50px;
+        margin: 15px 15px 15px 15px;
+        padding: 15px 15px 15px 25px;
+    }
+
+    .graph_container_top {
+        border-width: 5px;
+        border-color: #4d71ab;
+        border-style: solid;
+        border-radius: 50px;
+        margin: 15px 15px 15px 15px;
+        padding: 15px 15px 15px 25px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .graph_container_flex_top {
+        display: flex;
+        flex-direction: column;
+        align-self: inherit;
+        padding: 15px 15px 15px 25px;
+    }
+
+    #constructor_wins_bar{
+        width: 100%;
+    }
+    #team_sunburst_graph {
+        width: 100%;
+    }
+
+ }

@@ -92,7 +92,6 @@ app.layout = html.Div(
                         html.Img(src="assets/logo.png", width="300px", height="200px", className="app_header_title"),
                         html.H2("seasons 2000-2022 analysis", className="app_header_paragraph"),
                     ],
-                    style={"display": "inline-block"}
                 ),
                 html.Div(
                     [
@@ -116,7 +115,6 @@ app.layout = html.Div(
                             ]
                         )
                     ],
-                    style={"display": "inline-block"}
                 )
 
             ],
@@ -129,34 +127,42 @@ app.layout = html.Div(
                 ),
                 html.Div(
                     [
-                        dcc.Graph(
-                            id="constructor_wins_graph"
+                        html.Div(
+                            [
+                                dcc.Graph(
+                                id="constructor_wins_graph"
+                                ),
+                            ],
+                            id = "constructor_wins_bar"
+
+                        ),
+                        html.Div(
+                            [
+                                dcc.Graph(
+                                id="sun"
+                                ),
+                            ],
+                            id="team_sunburst_graph"
                         ),
                     ],
-                    style={'width': '65%', 'display': 'inline-block'}
-                ),
-                html.Div(
-                    [
-                        dcc.Graph(
-                            id="sun"
-                        ),
-                    ],
-                    style={'width': '35%', 'display': 'inline-block'}
+                    className="graph_container_flex_top"
                 ),
                 html.Div(
                     [
                         dcc.Slider(
                             min=df["year"].min(),
                             max=df["year"].max(),
-                            step=None,
+                            step=1,
                             id="constructor_wins_slider",
                             value=df["year"].min(),
-                            marks={str(year): str(year) for year in df['year'].unique()}
+                            marks=None,
+                            tooltip={"placement": "bottom", "always_visible": True}
                         ),
-                    ]
+                    ],
+                    id="slider_container"
                 )
             ],
-            className="graph_container top"
+            className="graph_container_top"
         ),
         html.Div(
             [
@@ -187,23 +193,12 @@ app.layout = html.Div(
             ],
             className="graph_container bottom"
         ),
-        # html.Div(
-        #     [
-        #         dcc.Graph(
-        #             id="fastest_lap_details"
-        #         ),
-        #         dcc.Dropdown(
-        #             options=df['constructor_name'].unique(),
-        #             id='constructor_name_dropdown',
-        #             value=["Ferrari"],
-        #         )
-        #     ],
-        #     className="graph_container"
-        # )
     ],
     className="app_container"
 )
 
+
+# =============================== Callbacks ===============================
 
 # Constructor wins callback
 @app.callback(
