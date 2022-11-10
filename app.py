@@ -90,7 +90,7 @@ app.layout = html.Div(
                 html.Div(
                     [
                         html.Img(src="assets/logo.png", width="300px", height="200px", className="app_header_title"),
-                        html.H2("seasons 2000-2022 analysis", className="app_header_paragraph"),
+                        html.H2("seasons 2000-2021 analysis", className="app_header_paragraph"),
                     ],
                 ),
                 html.Div(
@@ -267,7 +267,7 @@ def update_sunburst(year):
     Input("update_timer", "n_intervals"))
 def update_timer(value):
     now = datetime.now()
-    gp_time = datetime(2022, 10, 30, 21, 0, 0)
+    gp_time = datetime(2022, 11, 13, 19, 0, 0)
     diff = gp_time-now
     days = diff.days
     hours = diff.seconds // 3600
