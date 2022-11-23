@@ -1,1 +1,1 @@
-web: gunicorn app:server
+gunicorn --worker-tmp-dir /dev/shm app:app
