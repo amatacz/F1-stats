@@ -16,8 +16,8 @@ Dataset used in project came from [Kaggle](kaggle.com) service and was shared by
 [F1-World-Championship ](https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020)
 <br><br>
 <img src='./readme_images/countdown.jpg' width="300" height="150"/><br>
-<img src='./readme_images/constructors_and_teams.jpg' width="1200" height="400"/> <br>
-<img src='./readme_images/track_speed.jpg' width="1200" height="400"/> 
+<img src='./readme_images/constructors_and_teams.jpg' width="1200" height="350"/> <br>
+<img src='./readme_images/track_speed.jpg' width="1200" height="350"/> 
 <br><br>
 ## Technologies
     * Python 3.10.8
