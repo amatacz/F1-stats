@@ -267,7 +267,7 @@ def update_sunburst(year):
     Input("update_timer", "n_intervals"))
 def update_timer(value):
     now = datetime.now()
-    gp_time = datetime(2022, 11, 13, 19, 0, 0)
+    gp_time = datetime(2023, 3, 5, 16, 0, 0)
     diff = gp_time-now
     days = diff.days
     hours = diff.seconds // 3600
