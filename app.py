@@ -1,5 +1,4 @@
 from datetime import datetime
-import pytz
 import pandas as pd
 from dash import Dash, dcc, html, Input, Output
 import dash_daq as daq
