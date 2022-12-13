@@ -25,4 +25,4 @@ Dataset used in project came from [Kaggle](kaggle.com) service and was shared by
     * Flask 2.2.2
     * Plotly 5.10.0
 ## Setup
-Dashboard has been deployed on DigitalOcean service and you can find it [here](http:://www.f1-stats.online/).
+Dashboard has been deployed on DigitalOcean service and you can find it [here](http://www.f1-stats.online/){:target="_blank"}.
