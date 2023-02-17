@@ -12,7 +12,7 @@ Interactive dashboard created with Python, Dash-Plotly, Pandas and Numpy.
 
 ## General info
 Dashboad created in educational purposes. It's main goal is to count down time to the next race, visualize results, speed, teams structures in seasons 2000 - 2021. <br>
-Dataset used in project came from [Kaggle](kaggle.com) service and was shared by user [Vopani](https://www.kaggle.com/rohanrao) based on CC0: Public Domain.<br>
+Dataset used in project came from [Kaggle](htts://www.kaggle.com) service and was shared by user [Vopani](https://www.kaggle.com/rohanrao) based on CC0: Public Domain.<br>
 [F1-World-Championship ](https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020)
 <br><br>
 <img src='./readme_images/countdown.jpg' width="300" height="150"/><br>
