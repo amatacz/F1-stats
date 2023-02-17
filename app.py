@@ -89,7 +89,7 @@ app.layout = html.Div(
                 html.Div(
                     [
                         html.Img(src="assets/logo.png", width="300px", height="200px", className="app_header_title"),
-                        html.H2("seasons 2000-2021 analysis", className="app_header_paragraph"),
+                        html.H2("seasons 2000-2022 analysis", className="app_header_paragraph"),
                     ],
                 ),
                 html.Div(
