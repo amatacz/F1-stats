@@ -8,10 +8,10 @@ import numpy as np
 
 # load datasets
 
-constructors = pd.read_csv('data/constructors.csv')
-drivers = pd.read_csv('data/drivers.csv')
-races = pd.read_csv('data/races.csv')
-results = pd.read_csv('data/results.csv')
+constructors = pd.read_csv('./data/constructors.csv')
+drivers = pd.read_csv('./data/drivers.csv')
+races = pd.read_csv('./data/races.csv')
+results = pd.read_csv('./data/results.csv')
 
 # merge datasets
 df = pd.merge(results, races[['raceId', 'year', 'name', 'round']], on='raceId', how='left')
@@ -66,6 +66,18 @@ df['constructor_colors'] = df['constructor_name'].map(constructors_colors)
 
 # reset index
 df.reset_index(drop=True, inplace=True)
+
+# F1 2023 races list
+# race_dates = ["2023-03-05 16:00:00", "2023-03-19 18:00:00", "2023-04-02 07:00:00", "2023-04-30 13:00:00", "2023-05-07 21:30:00", "2023-05-21 15:00:00", "2023-05-28 15:00:00", \
+#                "2023-06-04 15:00:00", "2023-06-18 20:00:00", "2023-07-09 16:00:00", "2023-07-23 15:00:00", "2023-07-30 15:00:00", "2023-08-27 15:00:00", "2023-09-03 15:00:00", \
+#                 "2023-09-17 14:00:00", "2023-09-24 07:00:00", "2023-10-08 16:00:00", "2023-10-22 21:00:00", "2023-10-29 21:00:00", "2023-11-05 18:00:00", "2023-11-19 07:00:00", \
+#                     "2023-11-26 14:00:00"]
+
+# F1 2023 races list starting from GP Australia (3rd race)
+race_dates = ["2023-04-02 07:00:00", "2023-04-30 13:00:00", "2023-05-07 21:30:00", "2023-05-21 15:00:00", "2023-05-28 15:00:00", \
+               "2023-06-04 15:00:00", "2023-06-18 20:00:00", "2023-07-09 16:00:00", "2023-07-23 15:00:00", "2023-07-30 15:00:00", "2023-08-27 15:00:00", "2023-09-03 15:00:00", \
+                "2023-09-17 14:00:00", "2023-09-24 07:00:00", "2023-10-08 16:00:00", "2023-10-22 21:00:00", "2023-10-29 21:00:00", "2023-11-05 18:00:00", "2023-11-19 07:00:00", \
+                    "2023-11-26 14:00:00"]
 
 
 app = Dash(
@@ -265,16 +277,31 @@ def update_sunburst(year):
     Output("my-LED-display", "value"),
     Input("update_timer", "n_intervals"))
 def update_timer(value):
+    # now = datetime.now()
+    # gp_time = datetime(2023, 4, 2, 7, 0, 0)
+    # diff = gp_time-now
+    # days = diff.days
+    # hours = diff.seconds // 3600
+    # totalHours, minutes = divmod(diff.seconds, 3600)
+    # totalMinutes, seconds = divmod(diff.seconds, 60)
+
     now = datetime.now()
-    gp_time = datetime(2023, 3, 5, 16, 0, 0)
-    diff = gp_time-now
-    days = diff.days
-    hours = diff.seconds // 3600
-    totalHours, minutes = divmod(diff.seconds, 3600)
-    totalMinutes, seconds = divmod(diff.seconds, 60)
+    n = 2
+    race_flag = True
+    
+    while now < datetime(2023, 11, 27, 6, 0, 0):
+        for race in race_dates:
+            gp_time = datetime.strptime(race, '%Y-%m-%d %H:%M:%S')
+            if gp_time > now:
+                diff = gp_time-now
+                days = diff.days
+                hours = diff.seconds // 3600
+                totalHours, minutes = divmod(diff.seconds, 3600)
+                totalMinutes, seconds = divmod(diff.seconds, 60)
 
-    return f"{days}:{hours}:{minutes//60}:{seconds}"
-
+                return f"{days}:{hours}:{minutes//60}:{seconds}"
+            else:
+                continue
 
 
 if __name__ == "__main__":
