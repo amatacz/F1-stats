@@ -277,14 +277,6 @@ def update_sunburst(year):
     Output("my-LED-display", "value"),
     Input("update_timer", "n_intervals"))
 def update_timer(value):
-    # now = datetime.now()
-    # gp_time = datetime(2023, 4, 2, 7, 0, 0)
-    # diff = gp_time-now
-    # days = diff.days
-    # hours = diff.seconds // 3600
-    # totalHours, minutes = divmod(diff.seconds, 3600)
-    # totalMinutes, seconds = divmod(diff.seconds, 60)
-
     now = datetime.now()
     n = 2
     race_flag = True
