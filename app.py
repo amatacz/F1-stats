@@ -8,10 +8,10 @@ import numpy as np
 
 # load datasets
 
-constructors = pd.read_csv('./data/constructors.csv')
-drivers = pd.read_csv('./data/drivers.csv')
-races = pd.read_csv('./data/races.csv')
-results = pd.read_csv('./data/results.csv')
+constructors = pd.read_csv('/home/f1/project/f1-stats/data/constructors.csv')
+drivers = pd.read_csv('/home/f1/project/f1-stats/data/drivers.csv')
+races = pd.read_csv('/home/f1/project/f1-stats/data/races.csv')
+results = pd.read_csv('/home/f1/project/f1-stats/data/results.csv')
 
 # merge datasets
 df = pd.merge(results, races[['raceId', 'year', 'name', 'round']], on='raceId', how='left')
