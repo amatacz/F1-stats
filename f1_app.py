@@ -12,6 +12,12 @@ drivers = pd.read_csv('/home/f1/project/f1-stats/data/drivers.csv')
 races = pd.read_csv('/home/f1/project/f1-stats/data/races.csv')
 results = pd.read_csv('/home/f1/project/f1-stats/data/results.csv')
 
+## load datasets from local dir
+# constructors = pd.read_csv('./data/constructors.csv')
+# drivers = pd.read_csv('./data/drivers.csv')
+# races = pd.read_csv('./data/races.csv')
+# results = pd.read_csv('./data/results.csv')
+
 
 # merge datasets
 df = pd.merge(results, races[['raceId', 'year', 'name', 'round']], on='raceId', how='left')
@@ -67,11 +73,15 @@ df['constructor_colors'] = df['constructor_name'].map(constructors_colors)
 # reset index
 df.reset_index(drop=True, inplace=True)
 
-# F1 2023 races dates list
-race_dates = ["2023-03-05 16:00:00", "2023-03-19 18:00:00", "2023-04-02 07:00:00", "2023-04-30 13:00:00", "2023-05-07 21:30:00", "2023-05-21 15:00:00", "2023-05-28 15:00:00", \
-               "2023-06-04 15:00:00", "2023-06-18 20:00:00", "2023-07-02 15:00:00", "2023-07-09 16:00:00", "2023-07-23 15:00:00", "2023-07-30 15:00:00", "2023-08-27 15:00:00", "2023-09-03 15:00:00", \
-                "2023-09-17 14:00:00", "2023-09-24 07:00:00", "2023-10-08 16:00:00", "2023-10-22 21:00:00", "2023-10-29 21:00:00", "2023-11-05 18:00:00", "2023-11-19 07:00:00", \
-                    "2023-11-26 14:00:00"]
+# F1 2024 races dates list
+race_dates = ["2024-03-02 16:00:00", "2024-03-09 18:00:00", "2024-03-24 07:00:00",
+              "2024-04-07 13:00:00", "2024-04-21 21:30:00", "2024-05-05 15:00:00",
+              "2024-05-19 15:00:00", "2024-05-26 15:00:00", "2024-06-09 20:00:00",
+              "2024-06-23 15:00:00", "2024-06-30 16:00:00", "2024-07-07 15:00:00",
+              "2024-07-21 15:00:00", "2024-07-28 15:00:00", "2024-08-25 15:00:00",
+              "2024-09-01 14:00:00", "2024-09-15 07:00:00", "2024-22-22 16:00:00",
+              "2024-10-20 21:00:00", "2024-10-27 21:00:00", "2024-11-03 18:00:00",
+              "2024-11-23 07:00:00", "2024-12-01 14:00:00", "2024-12-08 16:00:00"]
 
 app = Dash(
     __name__,
@@ -80,11 +90,7 @@ app = Dash(
 app.title = "F1 analyze"
 server = app.server
 
-
-
 app_color = {"graph_bg": "#061E44", "graph_line": "#007ACE", "graph_text": "#FFFFFF", "graph_colors": px.colors.qualitative.Vivid, "constructors_colors": constructors_colors}
-
-
 
 app.layout = html.Div(
     [
@@ -94,7 +100,7 @@ app.layout = html.Div(
                 html.Div(
                     [
                         html.Img(src="assets/logo.png", width="300px", height="200px", className="app_header_title"),
-                        html.H2("seasons 2000-2022 analysis", className="app_header_paragraph"),
+                        html.H2("seasons 2000-2023 analysis", className="app_header_paragraph"),
                     ],
                 ),
                 html.Div(
@@ -274,7 +280,7 @@ def update_timer(value):
     n = 2
     race_flag = True
 
-    while now < datetime(2023, 11, 27, 6, 0, 0):
+    while now < datetime(2024, 12, 9, 6, 0, 0):
         for race in race_dates:
             gp_time = datetime.strptime(race, '%Y-%m-%d %H:%M:%S')
             if gp_time > now:
@@ -290,5 +296,5 @@ def update_timer(value):
 
 
 if __name__ == "__main__":
-    #app.run_server(debug=True)
+    # app.run_server(debug=True)
     app.run(host='0.0.0.0')
