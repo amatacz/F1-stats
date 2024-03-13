@@ -25,4 +25,11 @@ Dataset used in project came from [Kaggle](htts://www.kaggle.com) service and wa
     * Flask 2.2.2
     * Plotly 5.10.0
 ## Setup
-Dashboard has been deployed on DigitalOcean service and you can find it <a href="http://64.227.120.12:8484/" target="_blank">here</a>.
+Dashboard has been deployed on DigitalOcean service and you can find it <a href="http://64.227.120.12:8484/" target="_blank">here</a>
+
+Or if you want to run code locally:
+* download code and unzip it,
+* install requirements using `pip install -r requirements.txt`,
+* run app with command `python f1_app.py`
+
+
