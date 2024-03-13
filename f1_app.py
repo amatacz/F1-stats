@@ -6,17 +6,19 @@ import plotly.express as px
 import numpy as np
 
 
-# load datasets
-constructors = pd.read_csv('/home/f1/project/f1-stats/data/constructors.csv')
-drivers = pd.read_csv('/home/f1/project/f1-stats/data/drivers.csv')
-races = pd.read_csv('/home/f1/project/f1-stats/data/races.csv')
-results = pd.read_csv('/home/f1/project/f1-stats/data/results.csv')
+# UNCOMMENT PROPER DATA SOURCES - SERVER OR LOCAL
 
-## load datasets from local dir
-# constructors = pd.read_csv('./data/constructors.csv')
-# drivers = pd.read_csv('./data/drivers.csv')
-# races = pd.read_csv('./data/races.csv')
-# results = pd.read_csv('./data/results.csv')
+# # load datasets from directory on SERVER
+# constructors = pd.read_csv('/home/f1/project/f1-stats/data/constructors.csv')
+# drivers = pd.read_csv('/home/f1/project/f1-stats/data/drivers.csv')
+# races = pd.read_csv('/home/f1/project/f1-stats/data/races.csv')
+# results = pd.read_csv('/home/f1/project/f1-stats/data/results.csv')
+
+# load datasets from local dir - LOCAL
+constructors = pd.read_csv('./data/constructors.csv')
+drivers = pd.read_csv('./data/drivers.csv')
+races = pd.read_csv('./data/races.csv')
+results = pd.read_csv('./data/results.csv')
 
 
 # merge datasets
